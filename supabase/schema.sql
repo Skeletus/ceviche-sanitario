@@ -196,6 +196,16 @@ using (
   )
 );
 
+drop policy if exists "Public can read authorized stalls" on stalls;
+create policy "Public can read authorized stalls"
+on stalls
+for select
+to anon, authenticated
+using (
+  is_public = true
+  and sanitary_status = 'authorized'
+);
+
 drop policy if exists "Vendors can create own stalls" on stalls;
 create policy "Vendors can create own stalls"
 on stalls
@@ -235,6 +245,21 @@ using (
       and profiles.auth_user_id = auth.uid()
       and profiles.role = 'vendor'
       and profiles.is_active = true
+  )
+);
+
+drop policy if exists "Public can read licenses for authorized stalls" on licenses;
+create policy "Public can read licenses for authorized stalls"
+on licenses
+for select
+to anon, authenticated
+using (
+  exists (
+    select 1
+    from stalls
+    where stalls.id = licenses.stall_id
+      and stalls.is_public = true
+      and stalls.sanitary_status = 'authorized'
   )
 );
 

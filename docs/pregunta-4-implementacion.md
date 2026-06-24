@@ -48,6 +48,8 @@ La rama `feature/stall-registration` implementa la HU07 del Sprint 1: registro d
 
 La rama `feature/license-management` implementa la HU08 del Sprint 1: registro y actualización de licencias municipales asociadas a puestos del vendedor autenticado. El flujo exige sesión activa, rol `vendor`, datos de vendedor y al menos un puesto registrado, valida número de licencia, fechas y estado, y persiste la licencia en `licenses` vinculada al `stall_id` correspondiente.
 
+La rama `feature/public-stalls` implementa las HU01, HU02 y HU03 del Sprint 1: consulta publica de puestos autorizados, filtros por ubicacion o estado sanitario y detalle sanitario del puesto. El modulo muestra solo puestos publicos con estado `authorized`, permite revisar licencia municipal visible y evita exponer datos sensibles del vendedor.
+
 [Completar con funcionalidades implementadas]
 
 ### 3.2 Evidencia de pantallas
