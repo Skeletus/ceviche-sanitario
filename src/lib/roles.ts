@@ -29,8 +29,14 @@ export const ROLE_MENU_ITEMS: Record<UserRole, RoleMenuItem[]> = {
   ],
   vendor: [
     {
-      title: "Registrar datos de vendedor",
-      description: "Actualizacion del perfil operativo del vendedor."
+      title: "Panel de vendedor",
+      description: "Resumen del estado del registro y siguientes pasos.",
+      href: "/dashboard/vendor"
+    },
+    {
+      title: "Mis datos de vendedor",
+      description: "Registro de identificacion y contacto del vendedor.",
+      href: "/vendor/register"
     },
     {
       title: "Registrar puesto",

@@ -15,13 +15,16 @@ create table if not exists profiles (
 -- Vendedores ambulantes asociados a un perfil de usuario.
 create table if not exists vendors (
   id uuid primary key default gen_random_uuid(),
-  profile_id uuid not null references profiles(id) on delete cascade,
+  profile_id uuid not null unique references profiles(id) on delete cascade,
   document_number text not null unique,
   phone text not null,
   address text,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+create unique index if not exists vendors_profile_id_unique
+on vendors(profile_id);
 
 -- Puestos de venta de ceviche de pota registrados para supervision.
 create table if not exists stalls (
@@ -131,6 +134,40 @@ drop trigger if exists vendors_set_updated_at on vendors;
 create trigger vendors_set_updated_at
 before update on vendors
 for each row execute function set_updated_at();
+
+alter table vendors enable row level security;
+
+drop policy if exists "Vendors can read own vendor data" on vendors;
+create policy "Vendors can read own vendor data"
+on vendors
+for select
+to authenticated
+using (
+  exists (
+    select 1
+    from profiles
+    where profiles.id = vendors.profile_id
+      and profiles.auth_user_id = auth.uid()
+      and profiles.role = 'vendor'
+      and profiles.is_active = true
+  )
+);
+
+drop policy if exists "Vendors can create own vendor data" on vendors;
+create policy "Vendors can create own vendor data"
+on vendors
+for insert
+to authenticated
+with check (
+  exists (
+    select 1
+    from profiles
+    where profiles.id = vendors.profile_id
+      and profiles.auth_user_id = auth.uid()
+      and profiles.role = 'vendor'
+      and profiles.is_active = true
+  )
+);
 
 drop trigger if exists stalls_set_updated_at on stalls;
 create trigger stalls_set_updated_at
