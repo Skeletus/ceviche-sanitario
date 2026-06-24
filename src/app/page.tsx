@@ -1,8 +1,10 @@
+import Link from "next/link";
+
 const sections = [
   {
     title: "Consulta de puestos autorizados",
     description:
-      "Listado público para que la ciudadanía identifique puestos con autorización y estado sanitario visible."
+      "Listado publico para que la ciudadania identifique puestos con autorizacion y estado sanitario visible."
   },
   {
     title: "Registro de vendedores",
@@ -35,13 +37,27 @@ export default function Home() {
             Proyecto Final de Carrera III
           </p>
           <h1 className="mt-4 text-4xl font-bold leading-tight sm:text-5xl">
-            Sistema de supervisión sanitaria para vendedores de ceviche de pota
+            Sistema de supervision sanitaria para vendedores de ceviche de pota
           </h1>
           <p className="mt-5 text-lg leading-8 text-slate-700">
             MVP web orientado a apoyar el registro de vendedores ambulantes, la
             consulta de puestos autorizados, el reporte de riesgos sanitarios y
-            la gestión inicial de inspecciones municipales.
+            la gestion inicial de inspecciones municipales.
           </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              className="rounded-md bg-sanitary-green px-4 py-2 text-sm font-semibold text-white transition hover:bg-sanitary-ink"
+              href="/login"
+            >
+              Iniciar sesion
+            </Link>
+            <Link
+              className="rounded-md border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-sanitary-green hover:text-sanitary-green"
+              href="/dashboard"
+            >
+              Ir al dashboard
+            </Link>
+          </div>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -61,9 +77,10 @@ export default function Home() {
         </div>
 
         <div className="rounded-lg border border-amber-200 bg-amber-50 p-5 text-sm leading-6 text-amber-950">
-          Esta pantalla es una base visual del MVP. La integración con Supabase,
-          autenticación, reportes, inspecciones y panel administrativo se
-          implementará en las siguientes iteraciones.
+          Esta rama implementa el flujo base de autenticacion con Supabase,
+          sesion activa, perfil de usuario, roles y navegacion condicionada. Los
+          reportes, inspecciones y formularios operativos quedan como
+          placeholders para siguientes historias.
         </div>
       </section>
     </main>
