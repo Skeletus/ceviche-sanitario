@@ -174,6 +174,42 @@ create trigger stalls_set_updated_at
 before update on stalls
 for each row execute function set_updated_at();
 
+alter table stalls enable row level security;
+
+drop policy if exists "Vendors can read own stalls" on stalls;
+create policy "Vendors can read own stalls"
+on stalls
+for select
+to authenticated
+using (
+  exists (
+    select 1
+    from vendors
+    inner join profiles on profiles.id = vendors.profile_id
+    where vendors.id = stalls.vendor_id
+      and profiles.auth_user_id = auth.uid()
+      and profiles.role = 'vendor'
+      and profiles.is_active = true
+  )
+);
+
+drop policy if exists "Vendors can create own stalls" on stalls;
+create policy "Vendors can create own stalls"
+on stalls
+for insert
+to authenticated
+with check (
+  exists (
+    select 1
+    from vendors
+    inner join profiles on profiles.id = vendors.profile_id
+    where vendors.id = stalls.vendor_id
+      and profiles.auth_user_id = auth.uid()
+      and profiles.role = 'vendor'
+      and profiles.is_active = true
+  )
+);
+
 drop trigger if exists licenses_set_updated_at on licenses;
 create trigger licenses_set_updated_at
 before update on licenses

@@ -141,12 +141,31 @@ function VendorDashboardContent({
         ) : null}
       </section>
 
-      <section className="mt-8 grid gap-4 md:grid-cols-2">
+      <section className="mt-8 grid gap-4 md:grid-cols-3">
+        <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+          <h2 className="text-lg font-semibold">Mis puestos</h2>
+          <p className="mt-3 text-sm leading-6 text-slate-600">
+            Consulta los puestos ambulantes asociados a tu registro.
+          </p>
+          <Link
+            className="mt-4 inline-flex rounded-md bg-sanitary-green px-3 py-2 text-sm font-semibold text-white transition hover:bg-sanitary-ink"
+            href="/dashboard/vendor/stalls"
+          >
+            Ver puestos
+          </Link>
+        </article>
+
         <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
           <h2 className="text-lg font-semibold">Registrar puesto</h2>
           <p className="mt-3 text-sm leading-6 text-slate-600">
-            Placeholder para la siguiente historia del Sprint 1.
+            Agrega un puesto ambulante para evaluacion municipal.
           </p>
+          <Link
+            className="mt-4 inline-flex rounded-md bg-sanitary-green px-3 py-2 text-sm font-semibold text-white transition hover:bg-sanitary-ink"
+            href="/vendor/stalls/new"
+          >
+            Registrar puesto
+          </Link>
         </article>
 
         <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
