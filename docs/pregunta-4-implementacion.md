@@ -42,6 +42,8 @@ Se eligió una base de datos relacional porque el dominio requiere integridad en
 
 En la fase base se deja preparada la estructura para implementar las funcionalidades núcleo: consulta de puestos autorizados, registro de vendedores, registro de puestos, reportes sanitarios, inspecciones municipales y panel administrativo.
 
+La rama `feature/vendor-registration` implementa la HU06 del Sprint 1: registro de datos de vendedor vinculado al perfil autenticado. El flujo protege las rutas por sesión y rol `vendor`, valida documento, teléfono y dirección antes de guardar, persiste los datos en `vendors` mediante `profile_id` y evita duplicados mostrando el registro existente cuando ya fue creado.
+
 [Completar con funcionalidades implementadas]
 
 ### 3.2 Evidencia de pantallas
