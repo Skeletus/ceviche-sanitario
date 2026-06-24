@@ -39,8 +39,14 @@ export const ROLE_MENU_ITEMS: Record<UserRole, RoleMenuItem[]> = {
       href: "/vendor/register"
     },
     {
+      title: "Mis puestos",
+      description: "Listado de puestos ambulantes asociados al vendedor.",
+      href: "/dashboard/vendor/stalls"
+    },
+    {
       title: "Registrar puesto",
-      description: "Alta de puestos ambulantes asociados al vendedor."
+      description: "Alta de puestos ambulantes asociados al vendedor.",
+      href: "/vendor/stalls/new"
     },
     {
       title: "Actualizar licencia",

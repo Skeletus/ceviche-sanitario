@@ -44,6 +44,8 @@ En la fase base se deja preparada la estructura para implementar las funcionalid
 
 La rama `feature/vendor-registration` implementa la HU06 del Sprint 1: registro de datos de vendedor vinculado al perfil autenticado. El flujo protege las rutas por sesión y rol `vendor`, valida documento, teléfono y dirección antes de guardar, persiste los datos en `vendors` mediante `profile_id` y evita duplicados mostrando el registro existente cuando ya fue creado.
 
+La rama `feature/stall-registration` implementa la HU07 del Sprint 1: registro de puestos ambulantes vinculados a vendedores existentes. El flujo exige sesión activa, rol `vendor` y datos de vendedor registrados, valida nombre, referencia de ubicación y distrito, persiste el puesto en `stalls` con `vendor_id`, estado inicial `pending` y visibilidad no pública hasta evaluación municipal.
+
 [Completar con funcionalidades implementadas]
 
 ### 3.2 Evidencia de pantallas
