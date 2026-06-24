@@ -1,0 +1,71 @@
+@startuml
+title Sistema de supervision sanitaria para vendedores de ceviche de pota - Arquitectura fisica en nube
+
+skinparam componentStyle rectangle
+skinparam nodeStyle rectangle
+skinparam shadowing false
+
+actor "Usuario final\nCiudadano / Vendedor /\nInspector / Administrador" as Usuario
+actor "Equipo de desarrollo" as Dev
+
+cloud "Internet" as Internet
+
+node "GitHub" as GitHub {
+  artifact "Repositorio\nmain / develop / feature" as Repo
+}
+
+node "GitHub Actions" as GHA {
+  component "Pipeline CI/CD\nbuild + test + deploy" as Pipeline
+}
+
+cloud "Vercel" as Vercel {
+  node "Vercel Edge Network / CDN" as CDN
+  node "Vercel Hosting" as Hosting {
+    artifact "Aplicacion Next.js" as NextApp
+  }
+  node "Vercel Serverless Functions" as Functions {
+    component "API / server-side functions" as ServerlessAPI
+  }
+  component "Vercel Logs\nAnalytics" as VercelLogs
+}
+
+cloud "Supabase" as Supabase {
+  component "Supabase Auth" as SupabaseAuth
+  database "Supabase PostgreSQL" as SupabaseDB
+  folder "Supabase Storage" as SupabaseStorage
+  component "Supabase Logs" as SupabaseLogs
+}
+
+Dev --> Repo : push / pull request
+Repo --> Pipeline : dispara workflow
+Pipeline --> Pipeline : instala dependencias\nejecuta pruebas y build
+Pipeline --> Hosting : despliega version aprobada
+Pipeline --> VercelLogs : registra resultado\nde despliegue
+
+Usuario --> Internet : accede a URL publica
+Internet --> CDN : HTTPS
+CDN --> Hosting : entrega frontend
+Hosting --> NextApp : renderiza rutas
+NextApp --> ServerlessAPI : invoca operaciones seguras
+
+ServerlessAPI --> SupabaseAuth : login, sesion y roles
+ServerlessAPI --> SupabaseDB : vendedores, puestos,\nlicencias, inspecciones,\nreportes y panel
+ServerlessAPI --> SupabaseStorage : evidencias de reportes\ne inspecciones
+
+NextApp --> VercelLogs : errores de cliente\ny rendimiento
+ServerlessAPI --> VercelLogs : logs de API
+SupabaseAuth --> SupabaseLogs : eventos de autenticacion
+SupabaseDB --> SupabaseLogs : consultas y errores
+SupabaseStorage --> SupabaseLogs : eventos de archivos
+
+note right of CDN
+  La red Edge/CDN acerca la aplicacion
+  a los usuarios y mejora el tiempo de carga.
+end note
+
+note bottom of Pipeline
+  El flujo CI/CD automatiza validacion y despliegue
+  para mantener una version publica estable.
+end note
+
+@enduml

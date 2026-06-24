@@ -1,0 +1,39 @@
+name: CI/CD - Next.js MVP
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - "feature/**"
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    name: Lint y build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Ejecutar lint
+        run: npm run lint
+
+      - name: Ejecutar build
+        run: npm run build
+
+      # El despliegue real a Vercel se gestionara luego con la integracion
+      # GitHub + Vercel y los secretos del proyecto configurados en Vercel.

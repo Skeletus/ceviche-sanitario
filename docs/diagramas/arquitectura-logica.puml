@@ -1,0 +1,70 @@
+@startuml
+title Sistema de supervision sanitaria para vendedores de ceviche de pota - Arquitectura logica
+
+skinparam componentStyle rectangle
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+actor "Ciudadano" as Ciudadano
+actor "Vendedor" as Vendedor
+actor "Inspector sanitario\no municipal" as Inspector
+actor "Administrador" as Administrador
+
+package "Capa de presentacion" {
+  [Frontend Next.js\nReact + TypeScript] as Frontend
+  [UI responsive\nTailwind CSS] as UI
+}
+
+package "Capa de aplicacion" {
+  [API / server-side functions\nNext.js] as API
+  [Modulo de usuarios\ny roles] as Usuarios
+  [Modulo de vendedores\ny puestos] as Puestos
+  [Modulo de licencias] as Licencias
+  [Modulo de inspecciones\ny estados sanitarios] as Inspecciones
+  [Modulo de reportes\nciudadanos] as Reportes
+  [Modulo de panel\ny analitica operativa] as Panel
+}
+
+package "Servicios de plataforma" {
+  [Autenticacion\nSupabase Auth] as Auth
+  database "Base de datos\nPostgreSQL / Supabase" as DB
+  [Almacenamiento\nSupabase Storage] as Storage
+  [Monitoreo y logs\nVercel + Supabase] as Monitoring
+}
+
+Ciudadano --> Frontend : consulta puestos\ny reporta riesgos
+Vendedor --> Frontend : registra datos\ny licencia
+Inspector --> Frontend : registra inspecciones\ny gestiona reportes
+Administrador --> Frontend : administra catalogos\ny visualiza panel
+
+Frontend --> UI : renderiza vistas
+Frontend --> API : solicitudes HTTPS
+
+API --> Auth : autentica sesion\ny obtiene rol
+API --> Usuarios : valida permisos
+API --> Puestos : registra y consulta puestos
+API --> Licencias : actualiza vigencia
+API --> Inspecciones : registra inspecciones
+API --> Reportes : gestiona reportes
+API --> Panel : consolida indicadores
+
+Usuarios --> DB : perfiles y roles
+Puestos --> DB : vendedores y puestos
+Licencias --> DB : licencias municipales
+Inspecciones --> DB : inspecciones y estados
+Reportes --> DB : reportes sanitarios
+Panel --> DB : consultas agregadas
+
+Reportes --> Storage : evidencias fotograficas
+Inspecciones --> Storage : actas o evidencias
+
+API --> Monitoring : errores y trazas
+Frontend --> Monitoring : metricas de uso
+
+note bottom of DB
+  La base relacional conserva integridad entre
+  vendedores, puestos, licencias, inspecciones
+  y reportes ciudadanos.
+end note
+
+@enduml

@@ -1,0 +1,74 @@
+@startuml
+title Sistema de supervision sanitaria para vendedores de ceviche de pota - Casos de uso
+
+left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+
+actor "Ciudadano" as Ciudadano
+actor "Vendedor" as Vendedor
+actor "Inspector sanitario\no municipal" as Inspector
+actor "Administrador" as Administrador
+
+rectangle "Sistema web de supervision sanitaria" {
+  usecase "Registrarse /\niniciar sesion" as UCAuth
+  usecase "Validar credenciales" as UCValidar
+  usecase "Consultar puestos\nautorizados" as UCConsultar
+  usecase "Filtrar por ubicacion\ny estado sanitario" as UCFiltrar
+  usecase "Reportar riesgo\nsanitario" as UCReportar
+  usecase "Adjuntar evidencia" as UCEvidencia
+  usecase "Registrar vendedor" as UCRegVendedor
+  usecase "Registrar puesto" as UCRegPuesto
+  usecase "Actualizar licencia" as UCLicencia
+  usecase "Registrar inspeccion" as UCInspeccion
+  usecase "Cambiar estado\nsanitario" as UCEstado
+  usecase "Gestionar reportes" as UCGestionReportes
+  usecase "Priorizar reporte" as UCPriorizar
+  usecase "Visualizar panel" as UCPanel
+}
+
+Ciudadano --> UCAuth
+Ciudadano --> UCConsultar
+Ciudadano --> UCReportar
+
+Vendedor --> UCAuth
+Vendedor --> UCRegVendedor
+Vendedor --> UCRegPuesto
+Vendedor --> UCLicencia
+
+Inspector --> UCAuth
+Inspector --> UCConsultar
+Inspector --> UCInspeccion
+Inspector --> UCEstado
+Inspector --> UCGestionReportes
+Inspector --> UCPanel
+
+Administrador --> UCAuth
+Administrador --> UCRegVendedor
+Administrador --> UCRegPuesto
+Administrador --> UCLicencia
+Administrador --> UCGestionReportes
+Administrador --> UCPanel
+
+UCAuth .> UCValidar : <<include>>
+UCConsultar .> UCFiltrar : <<include>>
+UCEvidencia .> UCReportar : <<extend>>
+UCRegPuesto .> UCRegVendedor : <<include>>
+UCLicencia .> UCRegVendedor : <<include>>
+UCInspeccion .> UCRegPuesto : <<include>>
+UCEstado .> UCInspeccion : <<include>>
+UCGestionReportes .> UCPriorizar : <<include>>
+UCPanel .> UCGestionReportes : <<include>>
+
+note right of UCReportar
+  El ciudadano puede reportar falta de higiene,
+  ausencia de licencia o manipulacion riesgosa
+  de la pota cruda.
+end note
+
+note right of UCEstado
+  El estado sanitario puede ser:
+  autorizado, observado, suspendido o clausurado.
+end note
+
+@enduml
