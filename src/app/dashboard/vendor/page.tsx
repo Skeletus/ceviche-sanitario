@@ -141,7 +141,7 @@ function VendorDashboardContent({
         ) : null}
       </section>
 
-      <section className="mt-8 grid gap-4 md:grid-cols-3">
+      <section className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
           <h2 className="text-lg font-semibold">Mis puestos</h2>
           <p className="mt-3 text-sm leading-6 text-slate-600">
@@ -169,10 +169,29 @@ function VendorDashboardContent({
         </article>
 
         <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+          <h2 className="text-lg font-semibold">Mis licencias</h2>
+          <p className="mt-3 text-sm leading-6 text-slate-600">
+            Revisa las licencias municipales de tus puestos.
+          </p>
+          <Link
+            className="mt-4 inline-flex rounded-md bg-sanitary-green px-3 py-2 text-sm font-semibold text-white transition hover:bg-sanitary-ink"
+            href="/dashboard/vendor/licenses"
+          >
+            Ver licencias
+          </Link>
+        </article>
+
+        <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
           <h2 className="text-lg font-semibold">Actualizar licencia</h2>
           <p className="mt-3 text-sm leading-6 text-slate-600">
-            Placeholder para la funcionalidad de licencia municipal.
+            Registra o actualiza la licencia municipal de un puesto.
           </p>
+          <Link
+            className="mt-4 inline-flex rounded-md bg-sanitary-green px-3 py-2 text-sm font-semibold text-white transition hover:bg-sanitary-ink"
+            href="/vendor/licenses"
+          >
+            Actualizar licencia
+          </Link>
         </article>
       </section>
     </section>

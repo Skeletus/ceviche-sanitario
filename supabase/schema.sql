@@ -54,6 +54,9 @@ create table if not exists licenses (
   check (issued_at is null or expires_at >= issued_at)
 );
 
+create unique index if not exists licenses_stall_id_unique
+on licenses(stall_id);
+
 -- Reportes ciudadanos de riesgos sanitarios observados.
 create table if not exists sanitary_reports (
   id uuid primary key default gen_random_uuid(),
@@ -214,6 +217,74 @@ drop trigger if exists licenses_set_updated_at on licenses;
 create trigger licenses_set_updated_at
 before update on licenses
 for each row execute function set_updated_at();
+
+alter table licenses enable row level security;
+
+drop policy if exists "Vendors can read own licenses" on licenses;
+create policy "Vendors can read own licenses"
+on licenses
+for select
+to authenticated
+using (
+  exists (
+    select 1
+    from stalls
+    inner join vendors on vendors.id = stalls.vendor_id
+    inner join profiles on profiles.id = vendors.profile_id
+    where stalls.id = licenses.stall_id
+      and profiles.auth_user_id = auth.uid()
+      and profiles.role = 'vendor'
+      and profiles.is_active = true
+  )
+);
+
+drop policy if exists "Vendors can create own licenses" on licenses;
+create policy "Vendors can create own licenses"
+on licenses
+for insert
+to authenticated
+with check (
+  exists (
+    select 1
+    from stalls
+    inner join vendors on vendors.id = stalls.vendor_id
+    inner join profiles on profiles.id = vendors.profile_id
+    where stalls.id = licenses.stall_id
+      and profiles.auth_user_id = auth.uid()
+      and profiles.role = 'vendor'
+      and profiles.is_active = true
+  )
+);
+
+drop policy if exists "Vendors can update own licenses" on licenses;
+create policy "Vendors can update own licenses"
+on licenses
+for update
+to authenticated
+using (
+  exists (
+    select 1
+    from stalls
+    inner join vendors on vendors.id = stalls.vendor_id
+    inner join profiles on profiles.id = vendors.profile_id
+    where stalls.id = licenses.stall_id
+      and profiles.auth_user_id = auth.uid()
+      and profiles.role = 'vendor'
+      and profiles.is_active = true
+  )
+)
+with check (
+  exists (
+    select 1
+    from stalls
+    inner join vendors on vendors.id = stalls.vendor_id
+    inner join profiles on profiles.id = vendors.profile_id
+    where stalls.id = licenses.stall_id
+      and profiles.auth_user_id = auth.uid()
+      and profiles.role = 'vendor'
+      and profiles.is_active = true
+  )
+);
 
 drop trigger if exists sanitary_reports_set_updated_at on sanitary_reports;
 create trigger sanitary_reports_set_updated_at

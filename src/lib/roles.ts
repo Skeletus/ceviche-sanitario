@@ -44,13 +44,19 @@ export const ROLE_MENU_ITEMS: Record<UserRole, RoleMenuItem[]> = {
       href: "/dashboard/vendor/stalls"
     },
     {
+      title: "Mis licencias",
+      description: "Licencias municipales asociadas a puestos propios.",
+      href: "/dashboard/vendor/licenses"
+    },
+    {
       title: "Registrar puesto",
       description: "Alta de puestos ambulantes asociados al vendedor.",
       href: "/vendor/stalls/new"
     },
     {
       title: "Actualizar licencia",
-      description: "Gestion de vigencia y datos de licencia municipal."
+      description: "Gestion de vigencia y datos de licencia municipal.",
+      href: "/vendor/licenses"
     },
     {
       title: "Consultar estado propio",

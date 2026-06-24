@@ -46,6 +46,8 @@ La rama `feature/vendor-registration` implementa la HU06 del Sprint 1: registro 
 
 La rama `feature/stall-registration` implementa la HU07 del Sprint 1: registro de puestos ambulantes vinculados a vendedores existentes. El flujo exige sesión activa, rol `vendor` y datos de vendedor registrados, valida nombre, referencia de ubicación y distrito, persiste el puesto en `stalls` con `vendor_id`, estado inicial `pending` y visibilidad no pública hasta evaluación municipal.
 
+La rama `feature/license-management` implementa la HU08 del Sprint 1: registro y actualización de licencias municipales asociadas a puestos del vendedor autenticado. El flujo exige sesión activa, rol `vendor`, datos de vendedor y al menos un puesto registrado, valida número de licencia, fechas y estado, y persiste la licencia en `licenses` vinculada al `stall_id` correspondiente.
+
 [Completar con funcionalidades implementadas]
 
 ### 3.2 Evidencia de pantallas
