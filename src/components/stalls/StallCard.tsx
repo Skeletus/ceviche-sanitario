@@ -43,7 +43,7 @@ export function StallCard({ stall }: StallCardProps) {
   const license = stall.licenses[0];
 
   return (
-    <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+    <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:border-emerald-200 hover:shadow-md">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h2 className="text-xl font-bold text-sanitary-ink">
@@ -77,10 +77,11 @@ export function StallCard({ stall }: StallCardProps) {
         </div>
       </div>
 
-      <div className="mt-5 flex flex-col gap-3 border-t border-slate-100 pt-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-slate-500">
-          Actualizado: {formatDate(stall.updated_at)}
-        </p>
+      <div className="mt-5 grid gap-3 border-t border-slate-100 pt-4 sm:grid-cols-[1fr_auto] sm:items-center">
+        <div className="text-sm text-slate-500">
+          <p>Ultima actualizacion: {formatDate(stall.updated_at)}</p>
+          <p className="mt-1">Informacion publicada para consulta ciudadana.</p>
+        </div>
         <Link
           className="inline-flex rounded-md bg-sanitary-green px-3 py-2 text-sm font-semibold text-white transition hover:bg-sanitary-ink"
           href={`/stalls/${stall.id}`}

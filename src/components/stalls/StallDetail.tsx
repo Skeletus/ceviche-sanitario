@@ -113,7 +113,7 @@ export function StallDetail({ stallId }: StallDetailProps) {
           Puesto no disponible
         </h1>
         <p className="mt-3 text-sm leading-6 text-slate-600">
-          El puesto no existe, no esta publicado o no tiene estado autorizado.
+          El puesto no existe o no esta disponible para consulta ciudadana.
         </p>
         <Link
           className="mt-6 inline-flex rounded-md bg-sanitary-green px-4 py-2 text-sm font-semibold text-white transition hover:bg-sanitary-ink"
@@ -224,8 +224,7 @@ export function StallDetail({ stallId }: StallDetailProps) {
 
       {!license ? (
         <div className="mt-6 rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-          No existe informacion sanitaria suficiente para confirmar licencia
-          municipal publicada.
+          La licencia municipal no se encuentra publicada para este puesto.
         </div>
       ) : null}
 

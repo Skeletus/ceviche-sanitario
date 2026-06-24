@@ -23,6 +23,14 @@ export function StallFilters({
 }: StallFiltersProps) {
   return (
     <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+      <div className="mb-4">
+        <h2 className="text-lg font-semibold text-sanitary-ink">
+          Filtrar puestos
+        </h2>
+        <p className="mt-1 text-sm text-slate-600">
+          Busca por ubicacion o revisa puestos segun su estado sanitario visible.
+        </p>
+      </div>
       <div className="grid gap-4 lg:grid-cols-[1fr_260px_auto] lg:items-end">
         <label className="block text-sm font-medium text-slate-700">
           Ubicacion o distrito
@@ -33,6 +41,9 @@ export function StallFilters({
             type="search"
             value={locationQuery}
           />
+          <span className="mt-1 block text-xs font-normal text-slate-500">
+            Ejemplo: mercado, avenida principal o distrito.
+          </span>
         </label>
 
         <label className="block text-sm font-medium text-slate-700">

@@ -62,7 +62,7 @@ function VendorDashboardContent({
       <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <section>
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sanitary-green">
-            Dashboard vendedor
+            Panel de vendedor
           </p>
           <h1 className="mt-3 text-3xl font-bold">
             Bienvenido, {profile.full_name}
@@ -105,7 +105,7 @@ function VendorDashboardContent({
                 ? "Consultando datos registrados..."
                 : vendor
                   ? "Tus datos de vendedor ya estan registrados."
-                  : "Aun no tienes datos de vendedor registrados."}
+                  : "No hay datos de vendedor registrados por el momento."}
             </p>
           </div>
 

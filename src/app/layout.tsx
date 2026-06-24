@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Supervisión sanitaria de ceviche de pota",
+  title: "Ceviche Sanitario",
   description:
-    "MVP para registrar vendedores, puestos, reportes e inspecciones sanitarias municipales."
+    "Plataforma web para consultar puestos autorizados y apoyar la supervision sanitaria municipal de vendedores de ceviche de pota."
 };
 
 export default function RootLayout({
