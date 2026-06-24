@@ -19,7 +19,7 @@ export function LoginForm() {
 
     if (!isSupabaseConfigured || !supabase) {
       setErrorMessage(
-        "Supabase no esta configurado. Revisa NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_ANON_KEY."
+        "El acceso no esta disponible en este momento. Intenta nuevamente mas tarde."
       );
       return;
     }
@@ -38,7 +38,7 @@ export function LoginForm() {
       return;
     }
 
-    setSuccessMessage("Sesion iniciada correctamente. Redirigiendo...");
+    setSuccessMessage("Sesion iniciada correctamente. Redirigiendo al panel...");
     router.push("/dashboard");
     router.refresh();
   }
@@ -56,7 +56,7 @@ export function LoginForm() {
           Iniciar sesion
         </h1>
         <p className="mt-3 text-sm leading-6 text-slate-600">
-          Ingresa con el correo y la contrasena registrados en Supabase Auth.
+          Ingresa con el correo y la contrasena de tu cuenta registrada.
         </p>
       </div>
 
@@ -72,6 +72,9 @@ export function LoginForm() {
             type="email"
             value={email}
           />
+          <span className="mt-1 block text-xs font-normal text-slate-500">
+            Usa el correo asociado a tu perfil municipal.
+          </span>
         </label>
 
         <label className="block text-sm font-medium text-slate-700">
@@ -85,6 +88,9 @@ export function LoginForm() {
             type="password"
             value={password}
           />
+          <span className="mt-1 block text-xs font-normal text-slate-500">
+            La contrasena distingue mayusculas y minusculas.
+          </span>
         </label>
       </div>
 

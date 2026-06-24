@@ -10,7 +10,7 @@ export const ROLE_LABELS: Record<UserRole, string> = {
 };
 
 export const ROLE_DESCRIPTIONS: Record<UserRole, string> = {
-  citizen: "Puede consultar puestos autorizados y reportar riesgos sanitarios.",
+  citizen: "Puede consultar puestos autorizados y comunicar riesgos sanitarios.",
   vendor: "Puede mantener sus datos, puestos, licencias y estado sanitario.",
   inspector: "Puede revisar puestos, reportes e inspecciones municipales.",
   admin: "Puede consultar el panel administrativo, reportes y trazabilidad."
@@ -20,11 +20,12 @@ export const ROLE_MENU_ITEMS: Record<UserRole, RoleMenuItem[]> = {
   citizen: [
     {
       title: "Consultar puestos autorizados",
-      description: "Acceso ciudadano al listado publico de puestos autorizados."
+      description: "Acceso ciudadano al listado publico de puestos autorizados.",
+      href: "/stalls"
     },
     {
       title: "Reportar riesgo sanitario",
-      description: "Registro de riesgos sanitarios observados en la via publica."
+      description: "Comunicacion ciudadana de riesgos sanitarios observados en la via publica."
     }
   ],
   vendor: [
@@ -60,7 +61,7 @@ export const ROLE_MENU_ITEMS: Record<UserRole, RoleMenuItem[]> = {
     },
     {
       title: "Consultar estado propio",
-      description: "Revision del estado sanitario de los puestos propios."
+      description: "Revision consolidada del estado sanitario de los puestos propios."
     }
   ],
   inspector: [
@@ -89,7 +90,7 @@ export const ROLE_MENU_ITEMS: Record<UserRole, RoleMenuItem[]> = {
     },
     {
       title: "Gestionar reportes",
-      description: "Administracion de reportes sanitarios recibidos."
+      description: "Revision administrativa de reportes sanitarios recibidos."
     },
     {
       title: "Exportar CSV",

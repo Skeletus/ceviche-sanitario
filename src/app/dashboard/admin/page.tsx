@@ -16,7 +16,7 @@ export default function AdminDashboardPage() {
     setApiMessage("");
 
     if (!supabase) {
-      setApiMessage("Supabase no esta configurado.");
+      setApiMessage("No se pudo validar el permiso en este momento.");
       return;
     }
 
@@ -25,7 +25,7 @@ export default function AdminDashboardPage() {
     const accessToken = data.session?.access_token;
 
     if (!accessToken) {
-      setApiMessage("No hay token de sesion para validar la API.");
+      setApiMessage("No se encontro una sesion activa para validar el permiso.");
       setIsCheckingApi(false);
       return;
     }
@@ -49,20 +49,19 @@ export default function AdminDashboardPage() {
 
           <section className="mx-auto w-full max-w-6xl px-6 py-8 sm:px-8 lg:px-10">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sanitary-green">
-              Ruta protegida por rol
+              Administracion
             </p>
             <h1 className="mt-3 text-3xl font-bold">Panel administrativo</h1>
             <p className="mt-3 max-w-3xl text-base leading-7 text-slate-700">
-              Esta pantalla es un placeholder funcional para validar que solo
-              el rol administrador puede acceder manualmente a una ruta privada
-              administrativa.
+              Gestiona accesos administrativos y verifica permisos de las
+              operaciones privadas del sistema.
             </p>
 
             <div className="mt-6 rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-              <h2 className="text-lg font-semibold">Validacion de API</h2>
+              <h2 className="text-lg font-semibold">Verificacion de permisos</h2>
               <p className="mt-2 text-sm leading-6 text-slate-600">
-                El endpoint de ejemplo rechaza usuarios sin token o sin rol
-                administrador.
+                Confirma que la cuenta actual cuenta con permisos
+                administrativos para operaciones protegidas.
               </p>
               <button
                 className="mt-4 rounded-md bg-sanitary-green px-4 py-2 text-sm font-semibold text-white transition hover:bg-sanitary-ink disabled:cursor-not-allowed disabled:bg-slate-400"

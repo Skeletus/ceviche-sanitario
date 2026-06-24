@@ -239,7 +239,7 @@ export function LicenseManagementPanel({
     return (
       <section className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
         <p className="text-sm text-slate-600">
-          Cargando datos de licencia...
+          Cargando datos de licencias...
         </p>
       </section>
     );
@@ -256,6 +256,7 @@ export function LicenseManagementPanel({
         </h2>
         <p className="mt-3 text-sm leading-6 text-slate-600">
           La licencia municipal se asocia a puestos de un vendedor registrado.
+          Completa primero tus datos de identificacion para continuar.
         </p>
         <Link
           className="mt-6 inline-flex rounded-md bg-sanitary-green px-4 py-2 text-sm font-semibold text-white transition hover:bg-sanitary-ink"
@@ -322,7 +323,10 @@ export function LicenseManagementPanel({
                   {stall.name} - {stall.district}
                 </option>
               ))}
-            </select>
+              </select>
+            <span className="mt-1 block text-xs font-normal text-slate-500">
+              Solo se muestran puestos asociados a tu registro de vendedor.
+            </span>
             {errors.stall_id ? (
               <span className="mt-1 block text-sm text-red-700">
                 {errors.stall_id}
@@ -339,6 +343,9 @@ export function LicenseManagementPanel({
               type="text"
               value={licenseNumber}
             />
+            <span className="mt-1 block text-xs font-normal text-slate-500">
+              Escribe el numero tal como figura en la autorizacion municipal.
+            </span>
             {errors.license_number ? (
               <span className="mt-1 block text-sm text-red-700">
                 {errors.license_number}
@@ -360,7 +367,10 @@ export function LicenseManagementPanel({
                   {LICENSE_STATUS_LABELS[licenseStatus]}
                 </option>
               ))}
-            </select>
+              </select>
+            <span className="mt-1 block text-xs font-normal text-slate-500">
+              Mantener este dato actualizado mejora la consulta ciudadana.
+            </span>
             {errors.status ? (
               <span className="mt-1 block text-sm text-red-700">
                 {errors.status}
@@ -434,7 +444,7 @@ export function LicenseManagementPanel({
 
         {licenses.length === 0 ? (
           <div className="mt-6 rounded-md border border-slate-200 bg-slate-50 px-4 py-5 text-sm text-slate-600">
-            Aun no tienes licencias registradas.
+            No hay licencias registradas por el momento.
           </div>
         ) : (
           <div className="mt-6 grid gap-4">

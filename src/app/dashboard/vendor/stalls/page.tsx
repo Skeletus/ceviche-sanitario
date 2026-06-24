@@ -162,7 +162,7 @@ function VendorStallsContent({ profileId }: { profileId: string }) {
 
       {stalls.length === 0 ? (
         <div className="mt-6 rounded-md border border-slate-200 bg-slate-50 px-4 py-5 text-sm text-slate-600">
-          Aun no tienes puestos registrados.
+          No hay puestos registrados por el momento.
         </div>
       ) : (
         <div className="mt-6 overflow-hidden rounded-lg border border-slate-200">
@@ -211,7 +211,7 @@ export default function VendorStallsPage() {
           <section className="mx-auto w-full max-w-6xl px-6 py-8 sm:px-8 lg:px-10">
             <div className="mb-6">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sanitary-green">
-                HU07
+                Puestos registrados
               </p>
               <h1 className="mt-3 text-3xl font-bold">
                 Puestos del vendedor

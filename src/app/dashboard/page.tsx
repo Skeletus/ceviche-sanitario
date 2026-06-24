@@ -20,14 +20,10 @@ export default function DashboardPage() {
             <AppNavbar profile={profile} />
 
             <section className="mx-auto w-full max-w-6xl px-6 py-8 sm:px-8 lg:px-10">
-              <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-5 py-4 text-sm text-emerald-900">
-                Sesion autenticada correctamente.
-              </div>
-
-              <div className="mt-8 grid gap-6 lg:grid-cols-[1.3fr_0.7fr]">
+              <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr]">
                 <section>
                   <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sanitary-green">
-                    Dashboard privado
+                    Panel privado
                   </p>
                   <h1 className="mt-3 text-3xl font-bold">
                     Bienvenido, {profile.full_name}
@@ -41,7 +37,7 @@ export default function DashboardPage() {
                 </section>
 
                 <aside className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-                  <h2 className="text-lg font-semibold">Perfil basico</h2>
+                  <h2 className="text-lg font-semibold">Perfil de acceso</h2>
                   <dl className="mt-4 space-y-3 text-sm">
                     <div>
                       <dt className="font-medium text-slate-500">Correo</dt>
@@ -49,8 +45,10 @@ export default function DashboardPage() {
                     </div>
                     <div>
                       <dt className="font-medium text-slate-500">Rol</dt>
-                      <dd className="mt-1 text-slate-800">
-                        {getRoleLabel(profile.role)}
+                      <dd className="mt-2">
+                        <span className="inline-flex rounded-md border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-sanitary-green">
+                          {getRoleLabel(profile.role)}
+                        </span>
                       </dd>
                     </div>
                     <div>
@@ -76,7 +74,7 @@ export default function DashboardPage() {
                 <div className="mt-5 grid gap-4 md:grid-cols-2">
                   {menuItems.map((item) => (
                     <article
-                      className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm"
+                      className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:border-emerald-200 hover:shadow-md"
                       key={item.title}
                     >
                       <h3 className="text-lg font-semibold">{item.title}</h3>
@@ -88,11 +86,11 @@ export default function DashboardPage() {
                           className="mt-4 inline-flex rounded-md bg-sanitary-green px-3 py-2 text-sm font-semibold text-white transition hover:bg-sanitary-ink"
                           href={item.href}
                         >
-                          Abrir
+                          Abrir seccion
                         </Link>
                       ) : (
-                        <p className="mt-4 text-sm font-medium text-slate-500">
-                          Placeholder para siguientes historias.
+                        <p className="mt-4 rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-600">
+                          Esta funcion estara disponible en una proxima version.
                         </p>
                       )}
                     </article>

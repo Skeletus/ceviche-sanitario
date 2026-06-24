@@ -105,8 +105,13 @@ export function PublicStallList() {
         sanitaryStatus={sanitaryStatus}
       />
 
-      <div className="text-sm text-slate-600">
-        {filteredStalls.length} resultado(s) visible(s)
+      <div className="flex flex-col gap-2 rounded-md border border-emerald-100 bg-emerald-50/70 px-4 py-3 text-sm text-slate-700 sm:flex-row sm:items-center sm:justify-between">
+        <span className="font-medium text-sanitary-ink">
+          {filteredStalls.length} puestos visibles
+        </span>
+        <span>
+          Se muestran unicamente registros publicados para consulta ciudadana.
+        </span>
       </div>
 
       {stalls.length === 0 ? (
@@ -128,6 +133,13 @@ export function PublicStallList() {
             Ajusta la ubicacion, distrito o estado sanitario para ampliar la
             busqueda.
           </p>
+          <button
+            className="mt-5 rounded-md border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-sanitary-green hover:text-sanitary-green"
+            onClick={clearFilters}
+            type="button"
+          >
+            Limpiar filtros
+          </button>
         </section>
       ) : (
         <div className="grid gap-4 md:grid-cols-2">

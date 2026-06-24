@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { createStall, INITIAL_STALL_STATUS } from "@/lib/stalls";
+import { createStall } from "@/lib/stalls";
 import { getVendorByProfileId } from "@/lib/vendors";
 import type { Profile } from "@/types/auth";
 import type { Vendor } from "@/types/vendor";
@@ -175,8 +175,8 @@ export function StallRegistrationForm({
           Ubicacion y datos del puesto ambulante
         </h2>
         <p className="mt-3 text-sm leading-6 text-slate-600">
-          El puesto quedara asociado a tu registro de vendedor y empezara con
-          estado sanitario pendiente. No sera publico hasta ser evaluado.
+          El puesto quedara asociado a tu registro de vendedor y sera revisado
+          antes de mostrarse en la consulta ciudadana.
         </p>
       </div>
 
@@ -186,7 +186,7 @@ export function StallRegistrationForm({
           Vendedor asociado: {vendor.document_number}
         </p>
         <p className="mt-1 text-slate-600">
-          Estado inicial: {INITIAL_STALL_STATUS}
+          Estado inicial: pendiente de evaluacion
         </p>
       </div>
 
@@ -200,6 +200,9 @@ export function StallRegistrationForm({
             type="text"
             value={name}
           />
+          <span className="mt-1 block text-xs font-normal text-slate-500">
+            Usa el nombre con el que los vecinos identifican el puesto.
+          </span>
           {errors.name ? (
             <span className="mt-1 block text-sm text-red-700">
               {errors.name}
@@ -215,6 +218,9 @@ export function StallRegistrationForm({
             placeholder="Frente al mercado, esquina o referencia visible"
             value={locationReference}
           />
+          <span className="mt-1 block text-xs font-normal text-slate-500">
+            Agrega referencias visibles que faciliten la supervision municipal.
+          </span>
           {errors.location_reference ? (
             <span className="mt-1 block text-sm text-red-700">
               {errors.location_reference}
@@ -231,6 +237,9 @@ export function StallRegistrationForm({
             type="text"
             value={district}
           />
+          <span className="mt-1 block text-xs font-normal text-slate-500">
+            Indica el distrito donde opera habitualmente el puesto.
+          </span>
           {errors.district ? (
             <span className="mt-1 block text-sm text-red-700">
               {errors.district}

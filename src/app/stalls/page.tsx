@@ -11,11 +11,12 @@ export default function PublicStallsPage() {
               Consulta ciudadana
             </p>
             <h1 className="mt-3 text-3xl font-bold">
-              Puestos autorizados
+              Puestos autorizados de ceviche de pota
             </h1>
             <p className="mt-3 text-sm leading-6 text-slate-600">
               Revisa puestos de ceviche de pota publicados con estado sanitario
-              autorizado antes de comprar.
+              autorizado antes de comprar. La consulta no expone datos sensibles
+              de vendedores.
             </p>
           </div>
 

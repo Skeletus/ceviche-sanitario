@@ -50,6 +50,8 @@ La rama `feature/license-management` implementa la HU08 del Sprint 1: registro y
 
 La rama `feature/public-stalls` implementa las HU01, HU02 y HU03 del Sprint 1: consulta publica de puestos autorizados, filtros por ubicacion o estado sanitario y detalle sanitario del puesto. El modulo muestra solo puestos publicos con estado `authorized`, permite revisar licencia municipal visible y evita exponer datos sensibles del vendedor.
 
+La rama `feature/ui-polish` realiza un refinamiento UX/UI del sistema desplegado, eliminando textos internos de desarrollo en vistas publicas y mejorando landing page, navegacion, dashboards, formularios, consulta publica y estados de acceso para una presentacion final mas profesional.
+
 [Completar con funcionalidades implementadas]
 
 ### 3.2 Evidencia de pantallas

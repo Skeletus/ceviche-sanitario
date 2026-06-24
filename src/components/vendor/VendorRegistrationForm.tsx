@@ -142,7 +142,7 @@ export function VendorRegistrationForm({
     return (
       <section className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
         <div className="rounded-md border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
-          Este perfil ya tiene datos de vendedor registrados.
+          Tus datos de vendedor ya estan registrados.
         </div>
 
         <div className="mt-6">
@@ -200,7 +200,7 @@ export function VendorRegistrationForm({
         </h2>
         <p className="mt-3 text-sm leading-6 text-slate-600">
           Los nombres y correo se toman del perfil autenticado. Registra solo
-          los datos operativos del vendedor.
+          los datos necesarios para la supervision y contacto municipal.
         </p>
       </div>
 
@@ -219,6 +219,9 @@ export function VendorRegistrationForm({
             type="text"
             value={documentNumber}
           />
+          <span className="mt-1 block text-xs font-normal text-slate-500">
+            Registra el documento usado para la identificacion municipal.
+          </span>
           {errors.document_number ? (
             <span className="mt-1 block text-sm text-red-700">
               {errors.document_number}
@@ -235,6 +238,9 @@ export function VendorRegistrationForm({
             type="tel"
             value={phone}
           />
+          <span className="mt-1 block text-xs font-normal text-slate-500">
+            Incluye un numero disponible para coordinaciones sanitarias.
+          </span>
           {errors.phone ? (
             <span className="mt-1 block text-sm text-red-700">
               {errors.phone}
@@ -250,6 +256,9 @@ export function VendorRegistrationForm({
             placeholder="Direccion, referencia o zona habitual de contacto"
             value={address}
           />
+          <span className="mt-1 block text-xs font-normal text-slate-500">
+            Describe una referencia clara para contacto o verificacion.
+          </span>
           {errors.address ? (
             <span className="mt-1 block text-sm text-red-700">
               {errors.address}
